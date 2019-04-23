@@ -13,7 +13,6 @@
         android:padding="5dp"
         tools:context=".HomeDetailActivity">
 
-
         <EditText
             android:id="@+id/schoolname"
             android:layout_width="match_parent"
@@ -278,6 +277,7 @@
                 </LinearLayout>
             </FrameLayout>
         </LinearLayout>
+
         <Button
             android:layout_width="match_parent"
             android:layout_height="60dp"
