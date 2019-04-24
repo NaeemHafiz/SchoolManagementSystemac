@@ -37,10 +37,11 @@ public class LoginActivity extends AppCompatActivity {
             String Password = password.getText().toString();
             if (databaseHelper.checkUser(Email, Password)) {
 //                hideDialogue();
+                Toast.makeText(LoginActivity.this, "You Have Successfully Logged In", Toast.LENGTH_SHORT).show();
                 DBManager.setStringPrefs(getApplicationContext(), USER_EMAIL, Email);
                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 LoginActivity.this.finish();
-                Toast.makeText(LoginActivity.this, "You Have Successfully LogedIn", Toast.LENGTH_SHORT).show();
+
             } else {
                 Toast.makeText(getApplicationContext(), "Password or Email is incorrect", Toast.LENGTH_SHORT).show();
             }

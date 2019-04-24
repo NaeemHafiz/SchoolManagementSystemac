@@ -57,18 +57,13 @@ public class RegisterActivity extends AppCompatActivity {
         String name = editTextname.getText().toString();
         String email = editTextemail.getText().toString();
         String password = editTextpassword.getText().toString();
-        boolean checkmail = databaseHelper.checkEmail(email);
-        if (checkmail) {
-            boolean save = databaseHelper.saveDataSqLite(name, email, password);
-            if (save) {
-                Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-                DBManager.setStringPrefs(this, USER_EMAIL, email);
-                startActivity(intent);
-                RegisterActivity.this.finish();
-                Toast.makeText(this, "Inserted", Toast.LENGTH_SHORT).show();
-            }
-        } else {
-            Toast.makeText(this, "Email Already Exists", Toast.LENGTH_SHORT).show();
+        boolean save = databaseHelper.saveDataSqLite(name, email, password);
+        if (save) {
+            Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+            DBManager.setStringPrefs(this, USER_EMAIL, email);
+            startActivity(intent);
+            RegisterActivity.this.finish();
+            Toast.makeText(RegisterActivity.this, "Inserted", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -86,6 +81,10 @@ public class RegisterActivity extends AppCompatActivity {
         if (cpassword.isEmpty()) {
             editTextcpassword.setError("Please Enter Confirm Password");
             editTextcpassword.requestFocus();
+            return false;
+        }
+        if (!databaseHelper.checkEmail(email)) {
+            Toast.makeText(this, "Email Already Exists", Toast.LENGTH_SHORT).show();
             return false;
         }
         if (name.isEmpty()) {
