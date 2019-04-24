@@ -18,7 +18,7 @@ import java.util.regex.Pattern;
 import static com.example.schoolmanagementsystem.Tags.USER_EMAIL;
 
 public class RegisterActivity extends AppCompatActivity {
-    private EditText editTextname, editTextemail, editTextpassword;
+    private EditText editTextname, editTextemail, editTextpassword, editTextcpassword;
     private Button btnregister;
     private DatabaseHelper databaseHelper;
 
@@ -26,9 +26,13 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().hide();
+        databaseHelper = new DatabaseHelper(RegisterActivity.this);
         editTextname = findViewById(R.id.editname);
         editTextemail = findViewById(R.id.editemail);
         editTextpassword = findViewById(R.id.editpswrd);
+        editTextcpassword = findViewById(R.id.editcpswrd);
         btnregister = findViewById(R.id.btnregister);
         btnregister.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -38,20 +42,30 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
+
     }
 
     private void setRegister() {
         String username = editTextname.getText().toString();
         String useremail = editTextemail.getText().toString();
         String userpassword = editTextpassword.getText().toString();
-        boolean save = databaseHelper.saveDataSqLite(username, useremail, userpassword);
-        if (save) {
-            Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-            DBManager.setStringPrefs(this, USER_EMAIL, useremail);
-            startActivity(intent);
-            Toast.makeText(this, "Inserted", Toast.LENGTH_SHORT).show();
+        String usercpassword = editTextcpassword.getText().toString();
+        if (userpassword.equals(usercpassword)) {
+            boolean checkmail = databaseHelper.checkEmail(useremail);
+            if (checkmail) {
+                boolean save = databaseHelper.saveDataSqLite(username, useremail, userpassword);
+                if (save) {
+                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                    DBManager.setStringPrefs(this, USER_EMAIL, useremail);
+                    startActivity(intent);
+                    RegisterActivity.this.finish();
+                    Toast.makeText(this, "Inserted", Toast.LENGTH_SHORT).show();
+                }
+            } else {
+                Toast.makeText(this, "Email Already Exists", Toast.LENGTH_SHORT).show();
+            }
         } else {
-            Toast.makeText(this, "Not Inserted", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Password does not match", Toast.LENGTH_SHORT).show();
         }
     }
 
