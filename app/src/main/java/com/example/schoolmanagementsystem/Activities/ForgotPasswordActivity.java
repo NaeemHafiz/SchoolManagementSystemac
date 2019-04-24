@@ -37,7 +37,7 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     private void verifyFromSQLite() {
         String Email = editTextEmail.getText().toString().trim();
         if (databaseHelper.checkUser(Email)) {
-            Intent intent = new Intent(this, ConfirmPasswordActivity.class);
+            Intent intent = new Intent(ForgotPasswordActivity.this, ConfirmPasswordActivity.class);
             intent.putExtra("EMAIL", Email);
             emptyIputEditText();
             startActivity(intent);
