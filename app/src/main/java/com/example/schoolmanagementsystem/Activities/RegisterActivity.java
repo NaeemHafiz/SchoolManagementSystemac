@@ -73,9 +73,9 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    
+
     private boolean isValidate() {
-        String studentname = editTextname.getText().toString();
+        String name = editTextname.getText().toString();
         String studentemail = editTextemail.getText().toString();
         String studentpassword = editTextpassword.getText().toString();
         String usercpassword = editTextcpassword.getText().toString();
@@ -89,7 +89,7 @@ public class RegisterActivity extends AppCompatActivity {
             editTextcpassword.requestFocus();
             return false;
         }
-        if (studentname.isEmpty()) {
+        if (name.isEmpty()) {
             editTextname.setError("Please Enter Name");
             editTextname.requestFocus();
             return false;
