@@ -58,32 +58,45 @@ public class RegisterActivity extends AppCompatActivity {
         String useremail = editTextemail.getText().toString();
         String userpassword = editTextpassword.getText().toString();
         String usercpassword = editTextcpassword.getText().toString();
-        if (userpassword.equals(usercpassword)) {
-            boolean checkmail = databaseHelper.checkEmail(useremail);
-            if (checkmail) {
-                boolean save = databaseHelper.saveDataSqLite(username, useremail, userpassword);
-                if (save) {
-                    Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-                    DBManager.setStringPrefs(this, USER_EMAIL, useremail);
-                    startActivity(intent);
-                    RegisterActivity.this.finish();
-                    Toast.makeText(this, "Inserted", Toast.LENGTH_SHORT).show();
-                }
-            } else {
-                Toast.makeText(this, "Email Already Exists", Toast.LENGTH_SHORT).show();
+        boolean checkmail = databaseHelper.checkEmail(useremail);
+        if (checkmail) {
+            boolean save = databaseHelper.saveDataSqLite(username, useremail, userpassword);
+            if (save) {
+                Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+                DBManager.setStringPrefs(this, USER_EMAIL, useremail);
+                startActivity(intent);
+                RegisterActivity.this.finish();
+                Toast.makeText(this, "Inserted", Toast.LENGTH_SHORT).show();
             }
         } else {
-            Toast.makeText(this, "Password does not match", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Email Already Exists", Toast.LENGTH_SHORT).show();
         }
     }
 
+    //Validation on EditTexts
     private boolean isValidate() {
         String studentname = editTextname.getText().toString();
         String studentemail = editTextemail.getText().toString();
         String studentpassword = editTextpassword.getText().toString();
+        String usercpassword = editTextcpassword.getText().toString();
+
+        if (!studentpassword.contentEquals(usercpassword)) {
+            Toast.makeText(RegisterActivity.this, "Passwords Doesn't Match", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        if (usercpassword.isEmpty()) {
+            editTextcpassword.setError("Please Enter Confirm Password");
+            editTextcpassword.requestFocus();
+            return false;
+        }
         if (studentname.isEmpty()) {
             editTextname.setError("Please Enter Name");
             editTextname.requestFocus();
+            return false;
+        }
+        if (studentpassword.length() < 6) {
+            editTextpassword.setError("Password cannot be less than 6 characters!");
+            editTextpassword.requestFocus();
             return false;
         }
         if (studentemail.isEmpty()) {

@@ -64,13 +64,14 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         IsFinish();
     }
 
+    //show dialogue
     public void IsFinish() {
-
         AlertDialog.Builder alertdialog = new AlertDialog.Builder(this);
         alertdialog.setMessage("Are you sure you Want to exit?");
         alertdialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+                dialog.cancel();
                 HomeActivity.this.finish();
             }
         });
@@ -81,16 +82,13 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 dialog.cancel();
             }
         });
-
         AlertDialog alert = alertdialog.create();
         alert.show();
     }
-
 
     public void btnLogout(View view) {
         Toast.makeText(HomeActivity.this, "You Have Successfully Logged out", Toast.LENGTH_SHORT).show();
         DBManager.removeAllPreferencesData(getApplicationContext());
         startActivity(new Intent(HomeActivity.this, LoginActivity.class));
     }
-
 }
