@@ -22,7 +22,7 @@
         android:textSize="10sp" />
 
     <EditText
-        android:id="@+id/uname"
+        android:id="@+id/email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
@@ -30,17 +30,17 @@
         android:layout_marginRight="5dp"
         android:drawableLeft="@drawable/ic_person"
         android:drawablePadding="10dp"
-        android:hint="Enter Username"
-        android:inputType="text" />
+        android:hint="Enter Email"
+        android:inputType="textEmailAddress" />
 
     <EditText
-        android:id="@+id/upassword"
+        android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginRight="5dp"
-        android:drawableLeft="@drawable/ic_lock"
+        android:drawableLeft="@drawable/ic_password"
         android:drawablePadding="10dp"
         android:hint="Enter Password"
         android:inputType="textPassword" />

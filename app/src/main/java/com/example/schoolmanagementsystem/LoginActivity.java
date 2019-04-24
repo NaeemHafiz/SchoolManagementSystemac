@@ -2,38 +2,38 @@ package com.example.schoolmanagementsystem;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import static com.example.schoolmanagementsystem.Tags.USER_NAME;
+import static com.example.schoolmanagementsystem.Tags.USER_EMAIL;
 
 public class LoginActivity extends AppCompatActivity {
-    private EditText uname, upassword;
+    private EditText email, password;
     ProgressDialog progressdialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-        uname = findViewById(R.id.uname);
-        upassword = findViewById(R.id.upassword);
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
         progressdialog = new ProgressDialog(getApplicationContext());
         if (getSupportActionBar() != null) {
-            getSupportActionBar().setTitle("AFAQ-MDB");
+            getSupportActionBar().setTitle("APPLICATION");
         }
     }
 
     public void buttonLogin(View view) {
         if (isValid()) {
 //            showDialogue();
-            String Name = uname.getText().toString();
-            String Password = upassword.getText().toString();
-            if (Name.equalsIgnoreCase("naeem") && Password.equalsIgnoreCase("123")) {
+            String Email = email.getText().toString();
+            String Password = password.getText().toString();
+            if (Email.equalsIgnoreCase("naeem@yahoo.com") && Password.equalsIgnoreCase("123")) {
                 hideDialogue();
-                DBManager.setStringPrefs(getApplicationContext(), USER_NAME, Name);
+                DBManager.setStringPrefs(getApplicationContext(), USER_EMAIL, Email);
                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 LoginActivity.this.finish();
             } else {
@@ -43,16 +43,16 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     private boolean isValid() {
-        String Name = uname.getText().toString();
-        String Password = upassword.getText().toString();
+        String Name = email.getText().toString();
+        String Password = password.getText().toString();
         if (Name.isEmpty()) {
-            uname.setError("Please Enter Name");
-            uname.requestFocus();
+            email.setError("Please Enter Name");
+            email.requestFocus();
             return false;
         }
         if (Password.isEmpty()) {
-            upassword.setError("Please Enter Password");
-            upassword.requestFocus();
+            password.setError("Please Enter Password");
+            password.requestFocus();
             return false;
         }
         return true;
@@ -72,5 +72,6 @@ public class LoginActivity extends AppCompatActivity {
 
     public void btnmovetoregisteractivity(View view) {
         startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+        LoginActivity.this.finish();
     }
 }

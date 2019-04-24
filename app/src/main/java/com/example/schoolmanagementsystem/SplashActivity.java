@@ -1,13 +1,13 @@
 package com.example.schoolmanagementsystem;
 
 import android.content.Intent;
+import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.Window;
 import android.view.WindowManager;
 
-import static com.example.schoolmanagementsystem.Tags.USER_NAME;
+import static com.example.schoolmanagementsystem.Tags.USER_EMAIL;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -23,7 +23,7 @@ public class SplashActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                name = DBManager.getStringPrefs(getApplicationContext(), USER_NAME);
+                name = DBManager.getStringPrefs(getApplicationContext(), USER_EMAIL);
                 if (name.equalsIgnoreCase("")) {
                     startActivity(new Intent(SplashActivity.this, LoginActivity.class));
                     SplashActivity.this.finish();

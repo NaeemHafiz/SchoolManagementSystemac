@@ -1,5 +1,6 @@
 package com.example.schoolmanagementsystem;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -9,6 +10,8 @@ import android.widget.Toast;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+
+import static com.example.schoolmanagementsystem.Tags.USER_EMAIL;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText editTextname, editTextemail, editTextpassword;
@@ -22,11 +25,11 @@ public class RegisterActivity extends AppCompatActivity {
         editTextname = findViewById(R.id.editname);
         editTextemail = findViewById(R.id.editemail);
         editTextpassword = findViewById(R.id.editpswrd);
-        btnregister = findViewById(R.id.btnlogin);
+        btnregister = findViewById(R.id.btnregister);
         btnregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (isValid()) {
+                if (isValidate()) {
                     setRegister();
                 }
             }
@@ -34,16 +37,21 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void setRegister() {
-        String studentname = editTextname.getText().toString();
-        String studentsirnamename = editTextemail.getText().toString();
-        String studentmarks = editTextpassword.getText().toString();
-        boolean save = databaseHelper.saveDataSqLite(studentname, studentsirnamename, studentmarks);
-        if (save)
+        String username = editTextname.getText().toString();
+        String useremail = editTextemail.getText().toString();
+        String userpassword = editTextpassword.getText().toString();
+        boolean save = databaseHelper.saveDataSqLite(username, useremail, userpassword);
+        if (save) {
+            Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
+            DBManager.setStringPrefs(this, USER_EMAIL, useremail);
+            startActivity(intent);
             Toast.makeText(this, "Inserted", Toast.LENGTH_SHORT).show();
-        else Toast.makeText(this, "Not Inserted", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(this, "Not Inserted", Toast.LENGTH_SHORT).show();
+        }
     }
 
-    private boolean isValid() {
+    private boolean isValidate() {
         String studentname = editTextname.getText().toString();
         String studentemail = editTextemail.getText().toString();
         String studentpassword = editTextpassword.getText().toString();
