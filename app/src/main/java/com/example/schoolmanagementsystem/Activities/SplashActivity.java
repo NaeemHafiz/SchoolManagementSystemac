@@ -14,7 +14,7 @@ import static com.example.schoolmanagementsystem.Tags.USER_EMAIL;
 
 public class SplashActivity extends AppCompatActivity {
 
-    public String name = "";
+    private String name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
