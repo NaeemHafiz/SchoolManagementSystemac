@@ -73,7 +73,7 @@ public class RegisterActivity extends AppCompatActivity {
         }
     }
 
-    //Validation on EditTexts
+    
     private boolean isValidate() {
         String studentname = editTextname.getText().toString();
         String studentemail = editTextemail.getText().toString();
