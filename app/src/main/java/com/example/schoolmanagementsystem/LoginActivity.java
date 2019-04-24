@@ -70,4 +70,7 @@ public class LoginActivity extends AppCompatActivity {
             progressdialog.dismiss();
     }
 
+    public void btnmovetoregisteractivity(View view) {
+        startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
+    }
 }
