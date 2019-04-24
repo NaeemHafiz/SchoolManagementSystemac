@@ -1,8 +1,10 @@
-package com.example.schoolmanagementsystem;
+package com.example.schoolmanagementsystem.DbClasses;
 
 import android.content.Context;
 
-import static com.example.schoolmanagementsystem.Tags.APP_PREFS;
+import com.example.schoolmanagementsystem.UtilityClasses.PreferenceUtility;
+
+import static com.example.schoolmanagementsystem.Constants.Tags.APP_PREFS;
 
 public class DBManager {
 

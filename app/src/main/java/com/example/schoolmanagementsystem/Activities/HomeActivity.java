@@ -7,8 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
-import com.example.schoolmanagementsystem.DBManager;
+import com.example.schoolmanagementsystem.DbClasses.DBManager;
 import com.example.schoolmanagementsystem.R;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
@@ -82,11 +83,12 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         AlertDialog alert = alertdialog.create();
-        alertdialog.show();
+        alert.show();
     }
 
 
     public void btnLogout(View view) {
+        Toast.makeText(HomeActivity.this, "You Have Successfully Logedout", Toast.LENGTH_SHORT).show();
         DBManager.removeAllPreferencesData(getApplicationContext());
         startActivity(new Intent(HomeActivity.this, LoginActivity.class));
     }

@@ -1,4 +1,4 @@
-package com.example.schoolmanagementsystem;
+package com.example.schoolmanagementsystem.DbClasses;
 
 import android.content.ContentValues;
 import android.content.Context;
@@ -112,6 +112,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.update(TABLE_NAME, contentValues, COLUMN_USER_EMAIL + "=?", new String[]{email});
 
     }
+
     /**
      * This method to check user exist or not
      *

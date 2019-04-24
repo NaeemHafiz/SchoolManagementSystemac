@@ -1,4 +1,4 @@
-package com.example.schoolmanagementsystem;
+package com.example.schoolmanagementsystem.Constants;
 
 public class Tags {
     public static final String APP_PREFS = "schoolapp_prefs";

@@ -9,7 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.schoolmanagementsystem.DatabaseHelper;
+import com.example.schoolmanagementsystem.DbClasses.DatabaseHelper;
 import com.example.schoolmanagementsystem.R;
 
 public class ConfirmPasswordActivity extends AppCompatActivity {
@@ -23,13 +23,8 @@ public class ConfirmPasswordActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_password);
-        if (getIntent().getExtras() != null)
-            email = getIntent().getStringExtra("EMAIL");
-        databaseHelper = new DatabaseHelper(ConfirmPasswordActivity.this);
-        pswrd = findViewById(R.id.pswrd);
-        cpswrd = findViewById(R.id.cpswrd);
-        btnreset = findViewById(R.id.btnreset);
-        view = findViewById(R.id.view);
+        initViews();
+        initObjects();
         btnreset.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,6 +34,19 @@ public class ConfirmPasswordActivity extends AppCompatActivity {
                 }
             }
         });
+    }
+
+    private void initObjects() {
+        databaseHelper = new DatabaseHelper(ConfirmPasswordActivity.this);
+    }
+
+    private void initViews() {
+        if (getIntent().getExtras() != null)
+            email = getIntent().getStringExtra("EMAIL");
+        pswrd = findViewById(R.id.pswrd);
+        cpswrd = findViewById(R.id.cpswrd);
+        btnreset = findViewById(R.id.btnreset);
+        view = findViewById(R.id.view);
     }
 
     private boolean isValidate() {
@@ -71,7 +79,7 @@ public class ConfirmPasswordActivity extends AppCompatActivity {
 
     private void updatePassword() {
         String password = pswrd.getText().toString();
-        databaseHelper.checkUser(email, password);
+        databaseHelper.updatePassword(email, password);
         Toast.makeText(ConfirmPasswordActivity.this, "Password reset successfully", Toast.LENGTH_SHORT).show();
         emptyIputEditText();
         startActivity(new Intent(ConfirmPasswordActivity.this, LoginActivity.class));

@@ -7,10 +7,10 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.example.schoolmanagementsystem.DBManager;
+import com.example.schoolmanagementsystem.DbClasses.DBManager;
 import com.example.schoolmanagementsystem.R;
 
-import static com.example.schoolmanagementsystem.Tags.USER_EMAIL;
+import static com.example.schoolmanagementsystem.Constants.Tags.USER_EMAIL;
 
 public class SplashActivity extends AppCompatActivity {
 

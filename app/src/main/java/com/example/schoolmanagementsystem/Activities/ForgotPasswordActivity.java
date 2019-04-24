@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.example.schoolmanagementsystem.DatabaseHelper;
+import com.example.schoolmanagementsystem.DbClasses.DatabaseHelper;
 import com.example.schoolmanagementsystem.R;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
@@ -20,11 +20,9 @@ public class ForgotPasswordActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        databaseHelper = new DatabaseHelper(ForgotPasswordActivity.this);
         setContentView(R.layout.activity_forgotpassword);
-        editTextEmail = findViewById(R.id.edittextemail);
-        forgotPassword = findViewById(R.id.forgotPassword);
-        v = findViewById(R.id.view);
+        initViews();
+        initObjects();
         forgotPassword.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,6 +30,16 @@ public class ForgotPasswordActivity extends AppCompatActivity {
                     verifyFromSQLite();
             }
         });
+    }
+
+    private void initObjects() {
+        databaseHelper = new DatabaseHelper(ForgotPasswordActivity.this);
+    }
+
+    private void initViews() {
+        editTextEmail = findViewById(R.id.edittextemail);
+        forgotPassword = findViewById(R.id.forgotPassword);
+        v = findViewById(R.id.view);
     }
 
     private void verifyFromSQLite() {

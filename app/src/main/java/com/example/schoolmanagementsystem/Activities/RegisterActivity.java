@@ -8,14 +8,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.schoolmanagementsystem.DBManager;
-import com.example.schoolmanagementsystem.DatabaseHelper;
+import com.example.schoolmanagementsystem.DbClasses.DBManager;
+import com.example.schoolmanagementsystem.DbClasses.DatabaseHelper;
 import com.example.schoolmanagementsystem.R;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import static com.example.schoolmanagementsystem.Tags.USER_EMAIL;
+import static com.example.schoolmanagementsystem.Constants.Tags.USER_EMAIL;
 
 public class RegisterActivity extends AppCompatActivity {
     private EditText editTextname, editTextemail, editTextpassword, editTextcpassword;
@@ -26,14 +26,8 @@ public class RegisterActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
-        if (getSupportActionBar() != null)
-            getSupportActionBar().hide();
-        databaseHelper = new DatabaseHelper(RegisterActivity.this);
-        editTextname = findViewById(R.id.editname);
-        editTextemail = findViewById(R.id.editemail);
-        editTextpassword = findViewById(R.id.editpswrd);
-        editTextcpassword = findViewById(R.id.editcpswrd);
-        btnregister = findViewById(R.id.btnregister);
+        initViews();
+        initObjects();
         btnregister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -43,6 +37,20 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    private void initObjects() {
+        databaseHelper = new DatabaseHelper(RegisterActivity.this);
+    }
+
+    private void initViews() {
+        if (getSupportActionBar() != null)
+            getSupportActionBar().hide();
+        editTextname = findViewById(R.id.editname);
+        editTextemail = findViewById(R.id.editemail);
+        editTextpassword = findViewById(R.id.editpswrd);
+        editTextcpassword = findViewById(R.id.editcpswrd);
+        btnregister = findViewById(R.id.btnregister);
     }
 
     private void setRegister() {

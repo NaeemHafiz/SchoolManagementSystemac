@@ -1,4 +1,4 @@
-package com.example.schoolmanagementsystem;
+package com.example.schoolmanagementsystem.UtilityClasses;
 
 /**
  * Preference Utility

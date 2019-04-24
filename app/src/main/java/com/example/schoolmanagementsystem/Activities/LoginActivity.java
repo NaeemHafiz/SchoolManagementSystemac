@@ -8,11 +8,11 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.example.schoolmanagementsystem.DBManager;
-import com.example.schoolmanagementsystem.DatabaseHelper;
+import com.example.schoolmanagementsystem.DbClasses.DBManager;
+import com.example.schoolmanagementsystem.DbClasses.DatabaseHelper;
 import com.example.schoolmanagementsystem.R;
 
-import static com.example.schoolmanagementsystem.Tags.USER_EMAIL;
+import static com.example.schoolmanagementsystem.Constants.Tags.USER_EMAIL;
 
 public class LoginActivity extends AppCompatActivity {
     private EditText email, password;
@@ -25,10 +25,9 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
         if (getSupportActionBar() != null)
             getSupportActionBar().hide();
-        databaseHelper = new DatabaseHelper(LoginActivity.this);
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-        progressdialog = new ProgressDialog(getApplicationContext());
+        initViews();
+        initObjects();
+
     }
 
     public void buttonLogin(View view) {
@@ -41,7 +40,7 @@ public class LoginActivity extends AppCompatActivity {
                 DBManager.setStringPrefs(getApplicationContext(), USER_EMAIL, Email);
                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 LoginActivity.this.finish();
-                Toast.makeText(LoginActivity.this, "Pass", Toast.LENGTH_SHORT).show();
+                Toast.makeText(LoginActivity.this, "You Have Successfully LogedIn", Toast.LENGTH_SHORT).show();
             } else {
                 Toast.makeText(getApplicationContext(), "Password or Email is incorrect", Toast.LENGTH_SHORT).show();
             }
@@ -83,5 +82,15 @@ public class LoginActivity extends AppCompatActivity {
 
     public void forgotPassword(View view) {
         startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
+    }
+
+    private void initViews() {
+        email = findViewById(R.id.email);
+        password = findViewById(R.id.password);
+    }
+
+    private void initObjects() {
+        databaseHelper = new DatabaseHelper(LoginActivity.this);
+        progressdialog = new ProgressDialog(getApplicationContext());
     }
 }
