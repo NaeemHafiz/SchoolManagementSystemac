@@ -54,16 +54,15 @@ public class RegisterActivity extends AppCompatActivity {
     }
 
     private void setRegister() {
-        String username = editTextname.getText().toString();
-        String useremail = editTextemail.getText().toString();
-        String userpassword = editTextpassword.getText().toString();
-        String usercpassword = editTextcpassword.getText().toString();
-        boolean checkmail = databaseHelper.checkEmail(useremail);
+        String name = editTextname.getText().toString();
+        String email = editTextemail.getText().toString();
+        String password = editTextpassword.getText().toString();
+        boolean checkmail = databaseHelper.checkEmail(email);
         if (checkmail) {
-            boolean save = databaseHelper.saveDataSqLite(username, useremail, userpassword);
+            boolean save = databaseHelper.saveDataSqLite(name, email, password);
             if (save) {
                 Intent intent = new Intent(RegisterActivity.this, HomeActivity.class);
-                DBManager.setStringPrefs(this, USER_EMAIL, useremail);
+                DBManager.setStringPrefs(this, USER_EMAIL, email);
                 startActivity(intent);
                 RegisterActivity.this.finish();
                 Toast.makeText(this, "Inserted", Toast.LENGTH_SHORT).show();
@@ -76,15 +75,15 @@ public class RegisterActivity extends AppCompatActivity {
 
     private boolean isValidate() {
         String name = editTextname.getText().toString();
-        String studentemail = editTextemail.getText().toString();
-        String studentpassword = editTextpassword.getText().toString();
-        String usercpassword = editTextcpassword.getText().toString();
+        String email = editTextemail.getText().toString();
+        String password = editTextpassword.getText().toString();
+        String cpassword = editTextcpassword.getText().toString();
 
-        if (!studentpassword.contentEquals(usercpassword)) {
+        if (!password.contentEquals(cpassword)) {
             Toast.makeText(RegisterActivity.this, "Passwords Doesn't Match", Toast.LENGTH_SHORT).show();
             return false;
         }
-        if (usercpassword.isEmpty()) {
+        if (cpassword.isEmpty()) {
             editTextcpassword.setError("Please Enter Confirm Password");
             editTextcpassword.requestFocus();
             return false;
@@ -94,22 +93,22 @@ public class RegisterActivity extends AppCompatActivity {
             editTextname.requestFocus();
             return false;
         }
-        if (studentpassword.length() < 6) {
+        if (password.length() < 6) {
             editTextpassword.setError("Password cannot be less than 6 characters!");
             editTextpassword.requestFocus();
             return false;
         }
-        if (studentemail.isEmpty()) {
+        if (email.isEmpty()) {
             editTextemail.setError("Please Enter Email");
             editTextemail.requestFocus();
             return false;
         }
-        if (studentpassword.isEmpty()) {
+        if (password.isEmpty()) {
             editTextpassword.setError("Please Enter Password");
             editTextpassword.requestFocus();
             return false;
         }
-        if (!isEmailValidate(studentemail)) {
+        if (!isEmailValidate(email)) {
             editTextemail.setError("Please Enter Correct Email");
             editTextemail.requestFocus();
             return false;
