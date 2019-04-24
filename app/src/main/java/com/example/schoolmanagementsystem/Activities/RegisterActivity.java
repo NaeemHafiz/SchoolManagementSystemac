@@ -1,4 +1,4 @@
-package com.example.schoolmanagementsystem;
+package com.example.schoolmanagementsystem.Activities;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.schoolmanagementsystem.DBManager;
+import com.example.schoolmanagementsystem.DatabaseHelper;
+import com.example.schoolmanagementsystem.R;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

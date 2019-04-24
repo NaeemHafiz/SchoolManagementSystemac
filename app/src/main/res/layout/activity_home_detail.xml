@@ -11,7 +11,7 @@
         android:layout_margin="5dp"
         android:orientation="vertical"
         android:padding="5dp"
-        tools:context=".HomeDetailActivity">
+        tools:context=".Activities.HomeDetailActivity">
 
         <EditText
             android:id="@+id/schoolname"

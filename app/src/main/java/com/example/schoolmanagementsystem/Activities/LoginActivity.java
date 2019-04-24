@@ -1,4 +1,4 @@
-package com.example.schoolmanagementsystem;
+package com.example.schoolmanagementsystem.Activities;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
@@ -7,6 +7,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.schoolmanagementsystem.DBManager;
+import com.example.schoolmanagementsystem.R;
 
 import static com.example.schoolmanagementsystem.Tags.USER_EMAIL;
 

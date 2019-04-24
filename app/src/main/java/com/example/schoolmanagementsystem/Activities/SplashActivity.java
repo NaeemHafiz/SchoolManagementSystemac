@@ -1,4 +1,4 @@
-package com.example.schoolmanagementsystem;
+package com.example.schoolmanagementsystem.Activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -7,11 +7,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.example.schoolmanagementsystem.DBManager;
+import com.example.schoolmanagementsystem.R;
+
 import static com.example.schoolmanagementsystem.Tags.USER_EMAIL;
 
 public class SplashActivity extends AppCompatActivity {
 
-    private String name = "";
+    public String name = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
