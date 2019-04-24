@@ -32,26 +32,19 @@ public class LoginActivity extends AppCompatActivity {
 
     public void buttonLogin(View view) {
         if (isValidate()) {
-//            showDialogue();
             String Email = email.getText().toString();
-            String Password = password.getText().toString();
-            if (databaseHelper.checkUser(Email, Password)) {
-//                hideDialogue();
-                Toast.makeText(LoginActivity.this, "You Have Successfully Logged In", Toast.LENGTH_SHORT).show();
-                DBManager.setStringPrefs(getApplicationContext(), USER_EMAIL, Email);
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                LoginActivity.this.finish();
+            Toast.makeText(LoginActivity.this, "You Have Successfully Logged In", Toast.LENGTH_SHORT).show();
+            DBManager.setStringPrefs(getApplicationContext(), USER_EMAIL, Email);
+            startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+            LoginActivity.this.finish();
 
-            } else {
-                Toast.makeText(getApplicationContext(), "Password or Email is incorrect", Toast.LENGTH_SHORT).show();
-            }
         }
     }
 
     private boolean isValidate() {
-        String Name = email.getText().toString();
+        String Email = email.getText().toString();
         String Password = password.getText().toString();
-        if (Name.isEmpty()) {
+        if (Email.isEmpty()) {
             email.setError("Please Enter Name");
             email.requestFocus();
             return false;
@@ -59,6 +52,10 @@ public class LoginActivity extends AppCompatActivity {
         if (Password.isEmpty()) {
             password.setError("Please Enter Password");
             password.requestFocus();
+            return false;
+        }
+        if (!databaseHelper.checkUser(Email, Password)) {
+            Toast.makeText(getApplicationContext(), "Password or Email is incorrect", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;
