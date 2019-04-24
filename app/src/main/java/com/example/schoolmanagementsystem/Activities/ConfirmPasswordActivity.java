@@ -14,9 +14,9 @@ import com.example.schoolmanagementsystem.R;
 
 public class ConfirmPasswordActivity extends AppCompatActivity {
     private EditText pswrd, cpswrd;
-    Button btnreset;
+    private Button btnreset;
     private DatabaseHelper databaseHelper;
-    String email;
+    private String email;
     private View view;
 
     @Override
