@@ -88,8 +88,9 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
 
     public void btnLogout(View view) {
-        Toast.makeText(HomeActivity.this, "You Have Successfully Logedout", Toast.LENGTH_SHORT).show();
+        Toast.makeText(HomeActivity.this, "You Have Successfully Logged out", Toast.LENGTH_SHORT).show();
         DBManager.removeAllPreferencesData(getApplicationContext());
         startActivity(new Intent(HomeActivity.this, LoginActivity.class));
     }
+
 }
