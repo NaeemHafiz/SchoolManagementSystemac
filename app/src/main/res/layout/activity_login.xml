@@ -58,16 +58,19 @@
             android:textColor="#fff" />
 
         <TextView
+            android:id="@+id/txtforgot"
+            android:onClick="forgotPassword"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="15dp"
+            android:padding="8dp"
             android:text="Forgot Your Password?"
             android:textStyle="bold" />
 
         <Button
             android:layout_width="180dp"
             android:layout_height="60dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="20dp"
             android:background="@drawable/btn_background"
             android:onClick="btnmovetoregisteractivity"
             android:padding="10dp"

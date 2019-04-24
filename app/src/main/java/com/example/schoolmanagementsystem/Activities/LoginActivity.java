@@ -43,7 +43,7 @@ public class LoginActivity extends AppCompatActivity {
                 LoginActivity.this.finish();
                 Toast.makeText(LoginActivity.this, "Pass", Toast.LENGTH_SHORT).show();
             } else {
-                Toast.makeText(getApplicationContext(), "fail", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), "Password or Email is incorrect", Toast.LENGTH_SHORT).show();
             }
         }
     }
@@ -79,5 +79,9 @@ public class LoginActivity extends AppCompatActivity {
     public void btnmovetoregisteractivity(View view) {
         startActivity(new Intent(LoginActivity.this, RegisterActivity.class));
         LoginActivity.this.finish();
+    }
+
+    public void forgotPassword(View view) {
+        startActivity(new Intent(LoginActivity.this, ForgotPasswordActivity.class));
     }
 }
