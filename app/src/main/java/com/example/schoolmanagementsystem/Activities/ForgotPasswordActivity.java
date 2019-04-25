@@ -13,7 +13,7 @@ import com.example.schoolmanagementsystem.R;
 
 public class ForgotPasswordActivity extends AppCompatActivity {
     private EditText editTextEmail;
-    Button forgotPassword;
+    private Button forgotPassword;
     private DatabaseHelper databaseHelper;
     private View v;
 
